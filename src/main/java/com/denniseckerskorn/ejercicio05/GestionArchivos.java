@@ -6,8 +6,8 @@ import java.io.IOException;
 public class GestionArchivos {
     private File file;
 
-    public GestionArchivos() {
-        file = null;
+    public GestionArchivos(String ruta) {
+        file = new File(ruta);
     }
 
     /**
@@ -45,8 +45,30 @@ public class GestionArchivos {
         }
     }
 
+    /**
+     * Metodo que permite listar los archivos de un directorio especificio.
+     * Muestra el nombre, tipo, tamaño en bytes y permisos de escritura/lectura.
+     * De momento lo muestra en pantalla, se modificzara para que devuelva un String más adelante.
+     *
+     * @param directorio la ruta del directorio a comprobar
+     */
     public void listarDirectorio(String directorio) {
-
+        File dir = new File(directorio);
+        if (dir.exists() && dir.isDirectory()) {
+            File[] listaArchivos = dir.listFiles();
+            if (listaArchivos != null && listaArchivos.length > 0) {
+                for (File file : listaArchivos) {
+                    String tipo = file.isDirectory() ? "d" : "f";
+                    long size = file.length();
+                    String permisos = (file.canRead() ? "r" : "-") + (file.canWrite() ? "w" : "-");
+                    System.out.println(file.getName() + " " + tipo + " " + size + " bytes " + permisos);
+                }
+            } else {
+                System.out.println("El directorio está vacio");
+            }
+        } else {
+            System.out.println("El directorio no existe o está vacío");
+        }
     }
 
     public void verInfo(String directorio, String archivo) {
