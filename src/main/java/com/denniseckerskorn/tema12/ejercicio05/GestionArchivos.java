@@ -1,4 +1,4 @@
-package com.denniseckerskorn.ejercicio05;
+package com.denniseckerskorn.tema12.ejercicio05;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,7 +48,7 @@ public class GestionArchivos {
     /**
      * Metodo que permite listar los archivos de un directorio especificio.
      * Muestra el nombre, tipo, tamaño en bytes y permisos de escritura/lectura.
-     * De momento lo muestra en pantalla, se modificzara para que devuelva un String más adelante.
+     * TODO: De momento lo muestra en pantalla, se modificzara para que devuelva un String más adelante.
      *
      * @param directorio la ruta del directorio a comprobar
      */
