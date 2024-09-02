@@ -2,6 +2,7 @@ package com.denniseckerskorn.tema12.ejercicio05;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class GestionArchivos {
     private File file;
@@ -71,7 +72,47 @@ public class GestionArchivos {
         }
     }
 
+    /**
+     * Metodo que permite recibir 2 parámetros, el directorio padre y el archivo que específico que cuelga de ese directorio.
+     * Si el directorio y el archivo existen muestra la información del archivo especificado.
+     * TODO: Adaptar método para que devuelva un String con el resultado, para no usar println...
+     *
+     * @param directorio Directorio padre
+     * @param archivo    Archivo que está dentro del directorio padre
+     */
     public void verInfo(String directorio, String archivo) {
-
+        File dir = new File(directorio, archivo);
+        if (dir.exists()) {
+            String nameDir = dir.getName();
+            String absolutePath = dir.getAbsolutePath();
+            boolean canWrite = dir.canWrite();
+            boolean canRead = dir.canRead();
+            long size = dir.length();
+            boolean isDir = dir.isDirectory();
+            boolean isFile = dir.isFile();
+            System.out.println("Nombre: " + nameDir + ", ruta absoluta: " + absolutePath + ", escribir: " + canWrite +
+                    ", leer: " + canRead + ", tamanyo: " + size + ", es carpeta: " + isDir + ", es archivo: " + isFile);
+        } else {
+            System.out.println("El archivo o directorio no existe");
+        }
     }
+
+    public File getFile() {
+        return file;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GestionArchivos that = (GestionArchivos) o;
+        return Objects.equals(file, that.file);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(file);
+    }
+
 }

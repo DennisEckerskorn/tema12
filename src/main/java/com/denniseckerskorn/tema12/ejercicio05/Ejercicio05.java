@@ -12,9 +12,12 @@ public class Ejercicio05 {
         menu();
     }
 
+    /**
+     * Menu que permite seleccionar los métodos solicitados.
+     */
     private void menu() {
         int option = -1;
-        do{
+        do {
             System.out.println("GESTION DE ARCHIVOS");
             System.out.println("1. Crear archivo");
             System.out.println("2. Listar Directorio");
@@ -27,8 +30,10 @@ public class Ejercicio05 {
                     newFile();
                     break;
                 case 2:
+                    listDirectory();
                     break;
                 case 3:
+                    viewFileInfo();
                     break;
                 case 0:
                     System.out.println("Hasta pronto...");
@@ -40,6 +45,9 @@ public class Ejercicio05 {
         } while (option != 0);
     }
 
+    /**
+     * Método que realiza el proceso de validar y crear la ruta y/o archivo
+     */
     private void newFile() {
         System.out.println("La ruta por defecto es: " + rutaDefecto);
         String nombreArchivo = LibIO.requestString("Introduce el nombre del archivo con su extensión:");
@@ -49,5 +57,22 @@ public class Ejercicio05 {
         } else {
             System.out.println("No se ha podido crear al archivo");
         }
+    }
+
+    /**
+     * Método que permite ver el contenido de un directorio:
+     */
+    private void listDirectory() {
+        System.out.println("Contenido del directorio:");
+        ga.listarDirectorio(rutaDefecto);
+    }
+
+    /**
+     * Método que permite ver la información de un archivo dentro de un directorio.
+     */
+    private void viewFileInfo() {
+        String nombreArchivo = LibIO.requestString("Introduce el nombre del archivo o directorio:");
+        System.out.println("Información:");
+        ga.verInfo(rutaDefecto, nombreArchivo.trim());
     }
 }
