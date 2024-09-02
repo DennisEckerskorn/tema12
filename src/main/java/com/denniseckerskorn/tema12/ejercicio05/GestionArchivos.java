@@ -1,7 +1,6 @@
 package com.denniseckerskorn.tema12.ejercicio05;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.Objects;
 
 public class GestionArchivos {
@@ -94,6 +93,46 @@ public class GestionArchivos {
                     ", leer: " + canRead + ", tamanyo: " + size + ", es carpeta: " + isDir + ", es archivo: " + isFile);
         } else {
             System.out.println("El archivo o directorio no existe");
+        }
+    }
+
+    /**
+     * EJERCICIO 6:
+     * Método que lee el contenido de un archivo y lo devuelve como una cadena de texto.
+     *
+     * @param directory La ruta del directorio donde se encuentra el archivo.
+     * @param file      El nombre del archivo que se va a leer.
+     * @return El contenido del archivo como una cadena de texto, o null si el archivo no existe,
+     * no es un archivo regular, o si ocurre un error durante la lectura.
+     * @throws FileNotFoundException Si el archivo no se encuentra.
+     * @throws IOException           Si ocurre un error al leer el archivo.
+     */
+
+    public String viewContentOfFile(String directory, String file) {
+        File dir = new File(directory, file);
+        if (dir.exists() && dir.isFile()) {
+            StringBuilder fileContent = new StringBuilder();
+            try
+                    (FileReader fr = new FileReader(dir);
+                     BufferedReader br = new BufferedReader(fr)) {
+
+                String line;
+                while ((line = br.readLine()) != null) {
+                    for (int i = 0; i < line.length(); i++) {
+                        fileContent.append(line.charAt(i));
+                    }
+                    fileContent.append("\n");
+                }
+            } catch (FileNotFoundException fnfe) {
+                System.out.println("File not found: " + fnfe.getMessage());
+                return null;
+            } catch (IOException io) {
+                System.out.println("Read file error: " + io.getMessage());
+                return null;
+            }
+            return fileContent.toString();
+        } else {
+            return null;
         }
     }
 

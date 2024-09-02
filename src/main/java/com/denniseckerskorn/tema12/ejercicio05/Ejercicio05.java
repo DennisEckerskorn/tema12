@@ -22,6 +22,7 @@ public class Ejercicio05 {
             System.out.println("1. Crear archivo");
             System.out.println("2. Listar Directorio");
             System.out.println("3. Ver información");
+            System.out.println("4. Leer contenido de un archivo");
             System.out.println("0. Salir");
             option = LibIO.requestInt("Seleccione una opción", 0, 4);
 
@@ -34,6 +35,9 @@ public class Ejercicio05 {
                     break;
                 case 3:
                     viewFileInfo();
+                    break;
+                case 4:
+                    readFile();
                     break;
                 case 0:
                     System.out.println("Hasta pronto...");
@@ -74,5 +78,22 @@ public class Ejercicio05 {
         String nombreArchivo = LibIO.requestString("Introduce el nombre del archivo o directorio:");
         System.out.println("Información:");
         ga.verInfo(rutaDefecto, nombreArchivo.trim());
+    }
+
+
+    /**
+     * EJERCICIO 6:
+     * Metodo que permite mostrar el contenido de un archivo que existe.
+     */
+    private void readFile() {
+        String nombreArchivo = LibIO.requestString("Introduce el nombre del archivo que quieras leer:");
+        //System.out.println("Contenido del archivo:");
+        String contenido = ga.viewContentOfFile(rutaDefecto, nombreArchivo);
+        if (contenido != null) {
+            System.out.println("Contenido:");
+            System.out.println(contenido);
+        } else {
+            System.out.println("No se puede leer el contenido del archivo o el archivo no existe.");
+        }
     }
 }
