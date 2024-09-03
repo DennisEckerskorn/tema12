@@ -23,8 +23,9 @@ public class Ejercicio05 {
             System.out.println("2. Listar Directorio");
             System.out.println("3. Ver información");
             System.out.println("4. Leer contenido de un archivo");
+            System.out.println("5. Leer archivo binario a hexadecimal");
             System.out.println("0. Salir");
-            option = LibIO.requestInt("Seleccione una opción", 0, 4);
+            option = LibIO.requestInt("Seleccione una opción", 0, 5);
 
             switch (option) {
                 case 1:
@@ -38,6 +39,9 @@ public class Ejercicio05 {
                     break;
                 case 4:
                     readFile();
+                    break;
+                case 5:
+                    readBinaryToHexa();
                     break;
                 case 0:
                     System.out.println("Hasta pronto...");
@@ -94,6 +98,21 @@ public class Ejercicio05 {
             System.out.println(contenido);
         } else {
             System.out.println("No se puede leer el contenido del archivo o el archivo no existe.");
+        }
+    }
+
+    /**
+     * EJERCICIO 7:
+     * Método que permite mostrar el contenido de un archivo convertido a hecadecimal.
+     */
+    private void readBinaryToHexa() {
+        String nombreArchivo = LibIO.requestString("Introduce el nombre del archivo binario que quieras convertir a Hexadecimal");
+        String contenido = ga.viewContentofBinaryFileToHexa(rutaDefecto, nombreArchivo);
+        if (contenido != null) {
+            System.out.println("Contenido");
+            System.out.println(contenido);
+        } else {
+            System.out.println("No se puede leer el archivo o no existe");
         }
     }
 }

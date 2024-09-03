@@ -136,6 +136,46 @@ public class GestionArchivos {
         }
     }
 
+    /**
+     * EJERCICIO 7:
+     * Método que permite leer los bytes de un archivo cualquiera y los convierte a su representación en hexadecimal.
+     * Cada byte se representa por dos dígitos hexadecimales y los bytes se agrupan en pares.
+     * Se agrega un espacio entre cada par de bytes y un salto de línea después de 16 bytes (8 pares).
+     *
+     * @param directory Directorio donde se encuentra el archivo que se va a leer.
+     * @param file      Nombre del archivo que se va a leer desde el directorio especificado.
+     * @return Una cadena con el contenido del archivo en formato hexadecimal o null si no se puede leer,
+     * si el archivo está vacío o si ocurre un error de E/S.
+     */
+    public String viewContentofBinaryFileToHexa(String directory, String file) {
+        File binaryFile = new File(directory, file);
+        if (binaryFile.exists() && binaryFile.isFile()) {
+            StringBuilder fileContent = new StringBuilder();
+            try (FileInputStream fis = new FileInputStream(binaryFile)) {
+                int byteRead;
+                int counter = 0;
+
+                while ((byteRead = fis.read()) != -1) {
+                    fileContent.append(String.format("%02X", byteRead));
+                    counter++;
+                    if (counter % 2 == 0) {
+                        fileContent.append(" ");
+                    }
+                    if (counter % 16 == 0) {
+                        fileContent.append("\n");
+                    }
+                }
+            } catch (FileNotFoundException fnfe) {
+                return fnfe.getMessage();
+            } catch (IOException ioe) {
+                return ioe.getMessage();
+            }
+            return fileContent.toString();
+        } else {
+            return null;
+        }
+    }
+
     public File getFile() {
         return file;
     }
