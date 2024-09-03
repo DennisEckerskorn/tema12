@@ -118,10 +118,7 @@ public class GestionArchivos {
 
                 String line;
                 while ((line = br.readLine()) != null) {
-                    for (int i = 0; i < line.length(); i++) {
-                        fileContent.append(line.charAt(i));
-                    }
-                    fileContent.append("\n");
+                    fileContent.append(line).append("\n");
                 }
             } catch (FileNotFoundException fnfe) {
                 System.out.println("File not found: " + fnfe.getMessage());
