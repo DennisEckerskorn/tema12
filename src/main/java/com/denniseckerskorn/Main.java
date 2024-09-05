@@ -12,8 +12,10 @@ public class Main {
         // Ejercicio04 ejercicio04 = new Ejercicio04();
         // Ejercicio05 ejercicio05 = new Ejercicio05();
         if (args.length != 1) {
-            System.out.println("Uso: java com.denniseckerskorn.Main <ruta-al-archivo>");
-            return;
+            System.out.println("Solo se debe especificar 1 argumento");
+            for(String arg : args) {
+                System.out.println(arg);
+            }
         }
 
         String fileName = args[0];
