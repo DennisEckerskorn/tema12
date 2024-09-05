@@ -24,10 +24,10 @@ public class Main {
         FileViewer fw = new FileViewer();
         String contentFile = fw.viewContentOfFile(file);
 
-        if (contentFile != null) {
+        if (contentFile != null && !contentFile.isEmpty()) {
             System.out.println(contentFile);
         } else {
-            System.out.println("No se puede leer el archivo o está vacio.");
+            System.out.println("El archivo no existe o está vacío.");
         }
     }
 }
