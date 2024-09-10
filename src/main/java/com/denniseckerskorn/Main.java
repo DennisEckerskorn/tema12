@@ -11,6 +11,7 @@ public class Main {
         // Ejercicio01_02 ejercicio0102 = new Ejercicio01_02();
         // Ejercicio04 ejercicio04 = new Ejercicio04();
         // Ejercicio05 ejercicio05 = new Ejercicio05();
+        /*
         if (args.length != 1) {
             System.out.println("Solo se debe especificar 1 argumento");
             for(String arg : args) {
@@ -29,5 +30,7 @@ public class Main {
         } else {
             System.out.println("El archivo no existe o está vacío.");
         }
+    }
+         */
     }
 }
